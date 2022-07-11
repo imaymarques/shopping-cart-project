@@ -52,7 +52,3 @@ const showProduct = async () => {
 window.onload = async () => { 
   await showProduct();
 };
-
-window.onload = async () => { 
-  await showProduct();
-};
