@@ -1,5 +1,4 @@
 const fetchItem = () => {
-  //
 };
 
 if (typeof module !== 'undefined') {
