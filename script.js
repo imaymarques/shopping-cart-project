@@ -1,5 +1,9 @@
 // const { fetchItem } = require('./helpers/fetchItem');
 
+// const saveCartItems = require("./helpers/saveCartItems");
+
+const getOl = document.querySelector('.cart__items');
+
 const itens = document.querySelector('.items');
 
 const createProductImageElement = (imageSource) => {
@@ -18,7 +22,10 @@ const createCustomElement = (element, className, innerText) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = ({ target }) => target.remove();
+const cartItemClickListener = ({ target }) => {
+  target.remove();
+  saveCartItems(getOl.innerHTML);
+};
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
   const li = document.createElement('li');
@@ -37,6 +44,7 @@ const carr = async ({ target }) => {
     salePrice: itemsId.price,
   });
   carrItem.appendChild(obj);
+  saveCartItems(getOl.innerHTML);
 };
 
 const createProductItemElement = ({ sku, name, image }) => {
@@ -65,4 +73,5 @@ const showProduct = async () => {
 window.onload = async () => { 
   await showProduct();
   carr();
+  getOl.innerHTML = getSavedCartItems();
 };
