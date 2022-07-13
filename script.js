@@ -1,7 +1,3 @@
-// const { fetchItem } = require('./helpers/fetchItem');
-
-// const saveCartItems = require("./helpers/saveCartItems");
-
 const getOl = document.querySelector('.cart__items');
 
 const itens = document.querySelector('.items');
