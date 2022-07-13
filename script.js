@@ -81,10 +81,26 @@ const clearCart = () => {
   });
 };
 
+const textMessage = () => {
+  const getSection = document.querySelector('.container');
+  const newLi = document.createElement('li');
+  newLi.className = 'loading';
+  newLi.innerHTML = 'caregando...';
+  getSection.appendChild(newLi);
+};
+
+textMessage();
+
+const removeTextMessage = () => {
+  const getLiClass = document.querySelector('.loading');
+  getLiClass.remove();
+};
+
 window.onload = async () => { 
   await showProduct();
   carr();
   getOl.innerHTML = getSavedCartItems();
   clearCart();
   removeAfterOnload();
+  removeTextMessage();
 };
