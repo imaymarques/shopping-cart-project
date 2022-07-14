@@ -9,6 +9,15 @@ const createProductImageElement = (imageSource) => {
   return img;
 };
 
+const priceCalculate = async () => {
+  const getP = document.querySelector('.total-price');
+  const getAllItems = document.querySelectorAll('.cart__item');
+  const sum = [];
+  getAllItems.forEach((el) => sum.push(el.textContent.split('$')[1]));
+  const total = sum.reduce((acc, curr) => (acc + Number(curr)), 0);
+  getP.innerHTML = total;
+};
+
 const createCustomElement = (element, className, innerText) => {
   const e = document.createElement(element);
   e.className = className;
@@ -20,6 +29,7 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 
 const cartItemClickListener = ({ target }) => {
   target.remove();
+  priceCalculate();
   saveCartItems(getOl.innerHTML);
 };
 
@@ -45,6 +55,7 @@ const carr = async ({ target }) => {
   });
   getOl.appendChild(obj);
   saveCartItems(getOl.innerHTML);
+  priceCalculate();
 };
 
 const createProductItemElement = ({ sku, name, image }) => {
@@ -74,6 +85,7 @@ const clearCart = () => {
   const btn = document.querySelector('.empty-cart');
   btn.addEventListener('click', () => {
     getOl.innerHTML = '';
+    priceCalculate();
   });
 };
 
@@ -94,9 +106,10 @@ const removeTextMessage = () => {
 
 window.onload = async () => { 
   await showProduct();
-  carr();
+  // carr();
   getOl.innerHTML = getSavedCartItems();
   clearCart();
   removeAfterOnload();
   removeTextMessage();
+  priceCalculate();
 };
